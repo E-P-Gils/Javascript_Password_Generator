@@ -1,10 +1,5 @@
-function createPassword() {
+function generatePossibleChar(passwordUpperCase, passwordLowerCase, passwordNumbers, passwordSpecialChar) {
   var possibleChar = "";
-  var passwordLength = prompt("How long is your password(Enter a number)");
-  var passwordUpperCase = prompt("Do you want to include uppercase letters?(Y/N)");
-  var passwordLowerCase = prompt("Do you want to include lowercase letters?(Y/N)");
-  var passwordNumbers = prompt("Do you want to include numbers?(Y/N)");
-  var passwordSpecialChar = prompt("Do you want to include special characters?(Y/N)");
   if (passwordUpperCase === "Y") {
     possibleChar += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   }
@@ -17,18 +12,25 @@ function createPassword() {
   if (passwordSpecialChar === "Y") {
     possibleChar += "!@#$%^&*?+~=";
   }
-  return possibleChar;
+  return possibleChar; 
 }
 
 function writePassword() {
-  var password = createPassword();
+  var passwordLength = prompt("How long is your password(Enter a number)");
+  var passwordUpperCase = prompt("Do you want to include uppercase letters?(Y/N)");
+  var passwordLowerCase = prompt("Do you want to include lowercase letters?(Y/N)");
+  var passwordNumbers = prompt("Do you want to include numbers?(Y/N)");
+  var passwordSpecialChar = prompt("Do you want to include special characters?(Y/N)");
+  var possibleChar= generatePossibleChar(passwordUpperCase, passwordLowerCase, passwordNumbers, passwordSpecialChar); 
+  var password = "";
   for(var i = 0; i<passwordLength; i++) {
-    password += possibleChar.charAt(Math.floor(Math.random) * possibleChar.length);
+    var randomNumber = possibleChar.charAt(Math.floor(Math.random()* possibleChar.length));
+    password += randomNumber;
   }
   var passwordText = document.querySelector("#password");
-  passwordText.value = password;
+  passwordText.textContent = password;
 }
+
 
 var generateBtn = document.querySelector("#generate");
 generateBtn.addEventListener("click", writePassword);
-
