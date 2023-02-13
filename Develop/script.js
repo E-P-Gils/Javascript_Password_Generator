@@ -1,3 +1,4 @@
+/*In the following function "generatePossibleChar" we add different characters to an empty string based on user input*/
 function generatePossibleChar(passwordUpperCase, passwordLowerCase, passwordNumbers, passwordSpecialChar) {
   var possibleChar = "";
   if (passwordUpperCase === "Y") {
@@ -15,6 +16,7 @@ function generatePossibleChar(passwordUpperCase, passwordLowerCase, passwordNumb
   return possibleChar; 
 }
 
+/*In the following function "writePassword" we prompt the user for their input. Then in our for loop we call generatePossibleChar with the parameters that are specified in it. After that we use charAt to grab a random character from the concatenated string created from generatePossibleChar and multiply it by math.random(using math.floor to round it to a whole number just in case) to iterate this  process  up to the amount of times the user entered when prompted.*/
 function writePassword() {
   var passwordLength = prompt("How long is your password(Enter a number)");
   var passwordUpperCase = prompt("Do you want to include uppercase letters?(Y/N)");
@@ -31,6 +33,6 @@ function writePassword() {
   passwordText.textContent = password;
 }
 
-
+/*In this section we map generateBTN to the html button "Generate" then add an event listener to it so that when it's clickd it runs writePassword. We run writePassword as we call generatePossibleChar within it, so really we're running both functions at once.*/
 var generateBtn = document.querySelector("#generate");
 generateBtn.addEventListener("click", writePassword);
